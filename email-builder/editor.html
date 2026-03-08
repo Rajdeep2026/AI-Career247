@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blinkit Email Builder</title>
+    <link rel="stylesheet" href="editor.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Sidebar Controls -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="brand-title">Blinkit <span style="font-weight: 400;">Builder</span></h1>
+        </div>
+
+        <div class="control-group">
+            <div class="control-header">
+                <i data-lucide="sparkles" class="icon"></i>
+                <h3>AI Content Generator</h3>
+            </div>
+            <div class="control-content">
+                <label>Campaign Theme</label>
+                <textarea id="aiPrompt" placeholder="e.g. Weekend grocery shopping rush with a special discount..."></textarea>
+                <button id="btnGenerateAI" class="btn btn-primary">Generate Writing</button>
+                <p class="status-msg" id="aiStatus"></p>
+                <p class="help-text">Outputs to Hero Headline, Body, and main CTA.</p>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="control-header">
+                <i data-lucide="palette" class="icon"></i>
+                <h3>Theme Colors</h3>
+            </div>
+            <div class="control-content">
+                <div class="color-picker-row">
+                    <label>Brand Primary Color</label>
+                    <input type="color" id="colorPrimary" value="#F8CB45" data-target=".bg-primary">
+                </div>
+                <div class="color-picker-row">
+                    <label>Main Background Color</label>
+                    <input type="color" id="colorMainBg" value="#F8F8F8" data-target="body, .main-bg">
+                </div>
+                <div class="color-picker-row">
+                    <label>Email Canvas Background</label>
+                    <input type="color" id="colorCanvasBg" value="#FFFFFF" data-target=".canvas-bg">
+                </div>
+                <div class="color-picker-row">
+                    <label>Button Color</label>
+                    <input type="color" id="colorBtn" value="#54B226" data-target=".btn:not(.btn-yellow)">
+                </div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="control-header">
+                <i data-lucide="image" class="icon"></i>
+                <h3>Image Manager</h3>
+            </div>
+            <div class="control-content">
+                <p class="help-text">Click any image on the right to edit its source below.</p>
+                
+                <div id="imageEditorPanel" style="display: none;">
+                    <label>Selected Image URL</label>
+                    <input type="text" id="imageSrcInput" placeholder="https://...">
+                    <button id="btnUpdateImage" class="btn btn-secondary" style="margin-top: 8px;">Update Image</button>
+                    
+                    <div style="margin-top: 15px;">
+                        <label>Common Placeholders</label>
+                        <div class="placeholder-chips">
+                            <span class="chip" data-url="https://placehold.co/150x150/F8F8F8/3D3D3D?text=Product+1">Product 150x150</span>
+                            <span class="chip" data-url="https://placehold.co/600x200/F8CB45/3D3D3D?text=Hero+Banner">Hero Banner</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="imageSelectPrompt">
+                    <p class="empty-state">No image selected. Click an image in the preview to replace it.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-footer">
+            <button id="btnExport" class="btn btn-export">
+                <i data-lucide="download"></i> Export HTML
+            </button>
+        </div>
+    </div>
+
+    <!-- Live Preview Canvas -->
+    <div class="canvas-panel">
+        <div class="canvas-header">
+            <h2>Live Preview</h2>
+            <div class="canvas-actions">
+                <span class="badge">Desktop View</span>
+            </div>
+        </div>
+        <div class="canvas-container">
+            <iframe id="previewFrame" src="template.html"></iframe>
+        </div>
+    </div>
+
+    <script src="editor.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
